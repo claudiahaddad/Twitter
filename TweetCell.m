@@ -16,23 +16,11 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    self.tweetLabel.text = self.tweet.tweetText;
-    self.dateLabel.text = self.tweet.createdAtString;
-    self.profilePic.image = nil;
-    if (self.tweet.user.picURL != nil) {
-        [self.profilePic setImageWithURL:self.tweet.user.picURL];
-        self.userName.text = self.tweet.user.name;
-        self.handle.text = self.tweet.user.screenName;
-    // Initialization code
 }
-}
-
-
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
 
@@ -42,8 +30,8 @@
    self.tweetLabel.text = self.tweet.tweetText;
    self.dateLabel.text = self.tweet.createdAtString;
     self.profilePic.image = nil;
-    if (self.tweet.user.picURL != nil) {
-      [self.profilePic setImageWithURL:self.tweet.user.picURL];
+   if (self.tweet.user.picURL != nil) {
+     [self.profilePic setImageWithURL:self.tweet.user.picURL];
     self.userName.text = self.tweet.user.name;
     self.handle.text = self.tweet.user.screenName;
     

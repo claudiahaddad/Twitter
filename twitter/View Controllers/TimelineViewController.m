@@ -11,13 +11,13 @@
 #import "Tweet.h"
 #import "TweetCell.h"
 #import "User.h"
+#import "UIImageView+AFNetworking.h"
+
 
 @interface TimelineViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) NSArray *tweetArray;
-
-
 @end
 
 @implementation TimelineViewController 
@@ -27,11 +27,11 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.rowHeight = 150;
     
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
             self.tweetArray = tweets;
-            NSLog(@"😎😎😎 Successfully loaded home timeline");
             [self.tableView reloadData];
         } else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
@@ -44,11 +44,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
-    TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
+    TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"forIndexPath:indexPath];
+    
     cell.tweet = self.tweetArray[indexPath.row];
-    
+
     return cell;
 }
 

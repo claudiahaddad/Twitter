@@ -16,9 +16,12 @@
 @property (strong, nonatomic) IBOutlet UILabel *handle;
 @property (strong, nonatomic) IBOutlet UILabel *dateLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *profilePic;
-@property (strong, nonatomic) IBOutlet UILabel *tweetLabel;
 @property (strong, nonatomic) IBOutlet UILabel *favoritesLabel;
-
+@property (strong, nonatomic) IBOutlet UILabel *retweetsLabel;
 @property (strong, nonatomic) Tweet *tweet;
+@property (strong, nonatomic) IBOutlet UILabel *tweetLabel;
+
+- (void)setTweet:(Tweet*)tweet;
+
 
 @end

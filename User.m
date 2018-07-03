@@ -18,7 +18,6 @@
         
         NSString *URL = dictionary[@"profile_image_url"];
         self.picURL = [NSURL fileURLWithPath:URL];
-
     }
     return self;
 }
