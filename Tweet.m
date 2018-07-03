@@ -29,6 +29,7 @@
         self.retweeted = [dictionary[@"retweeted"] boolValue];
         
         
+        
         NSDictionary *user = dictionary[@"user"];
         self.user = [[User alloc] initWithDictionary:user];
         

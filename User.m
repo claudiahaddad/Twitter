@@ -7,6 +7,8 @@
 //
 
 #import "User.h"
+#import "UIImageView+AFNetworking.h"
+#import "TweetCell.h"
 
 @implementation User
 
@@ -17,7 +19,14 @@
         self.screenName = dictionary[@"screen_name"];
         
         NSString *URL = dictionary[@"profile_image_url"];
-        self.picURL = [NSURL fileURLWithPath:URL];
+        
+        self.picURL = [NSURL URLWithString:URL];
+
+      //  TweetCell.profilePic.image = nil;
+     //   if (self.picURL != nil) {
+      //      [TweetCell.profilePic setImageWithURL:self.picURL];
+        
+
     }
     return self;
 }

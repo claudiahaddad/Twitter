@@ -21,6 +21,7 @@
 @property (strong, nonatomic) Tweet *tweet;
 @property (strong, nonatomic) IBOutlet UILabel *tweetLabel;
 
+
 - (void)setTweet:(Tweet*)tweet;
 
 
