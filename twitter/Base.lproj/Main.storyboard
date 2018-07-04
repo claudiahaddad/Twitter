@@ -130,6 +130,9 @@
                                                     <state key="normal" image="retweet-icon">
                                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="didTapRetweet:" destination="c2o-AQ-lGp" eventType="touchUpInside" id="DGA-ki-Wb8"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXf-Dg-kGl" userLabel="favorite">
                                                     <rect key="frame" x="253" y="82" width="23" height="22"/>

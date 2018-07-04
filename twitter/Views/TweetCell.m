@@ -10,6 +10,7 @@
 #import "Tweet.h"
 #import "User.h"
 #import "UIImageView+AFNetworking.h"
+#import "APIManager.h"
 
 
 @implementation TweetCell
@@ -38,22 +39,41 @@
     self.handle.text = self.tweet.user.screenName;
     
     }
+
 - (IBAction)didTapLike:(id)sender {
     if (!self.tweet.favorited) {
         self.tweet.favoriteCount += 1;
     [self.favoritesLabel setText:[NSString stringWithFormat:@"%d", self.tweet.favoriteCount]];
         self.tweet.favorited = YES;
+        [[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
+            if(error){
+                NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
+            }
+            else{
+                NSLog(@"Successfully favorited the following Tweet: %@", tweet.tweetText);
+            }
+        }];
+   
+    } else {
+        self.tweet.favoriteCount -= 1;
+        [self.favoritesLabel setText:[NSString stringWithFormat:@"%d", self.tweet.favoriteCount]];
+        self.tweet.favorited = NO;
+        [[APIManager shared] unfavorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
+            if(error){ NSLog(@"Error unfavoriting tweet: %@", error.localizedDescription);
+            }
+            else{ NSLog(@"Successfully unfavorited the following Tweet: %@", tweet.tweetText);
+            }
+        }];
+    }
+}
+- (IBAction)didTapRetweet:(id)sender {
+    if (!self.tweet.retweeted) {
+        self.tweet.retweetCount += 1;
+        [self.retweetsLabel setText:[NSString stringWithFormat:@"%d", self.tweet.retweetCount]];
+        self.tweet.retweeted = YES;
 }
 }
 
 
-//[[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
- //   if(error){
- //       NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
- //   }
-  //  else{
-     //   NSLog(@"Successfully favorited the following Tweet: %@", tweet.text);
-   // }
-//}];
 
 @end
