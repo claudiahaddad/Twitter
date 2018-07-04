@@ -38,7 +38,22 @@
     self.handle.text = self.tweet.user.screenName;
     
     }
+- (IBAction)didTapLike:(id)sender {
+    if (!self.tweet.favorited) {
+        self.tweet.favoriteCount += 1;
+    [self.favoritesLabel setText:[NSString stringWithFormat:@"%d", self.tweet.favoriteCount]];
+        self.tweet.favorited = YES;
+}
+}
 
 
+//[[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
+ //   if(error){
+ //       NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
+ //   }
+  //  else{
+     //   NSLog(@"Successfully favorited the following Tweet: %@", tweet.text);
+   // }
+//}];
 
 @end

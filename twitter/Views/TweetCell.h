@@ -18,9 +18,9 @@
 @property (strong, nonatomic) IBOutlet UIImageView *profilePic;
 @property (strong, nonatomic) IBOutlet UILabel *favoritesLabel;
 @property (strong, nonatomic) IBOutlet UILabel *retweetsLabel;
+@property (strong, nonatomic) IBOutlet UILabel *replyLabel;
 @property (strong, nonatomic) Tweet *tweet;
 @property (strong, nonatomic) IBOutlet UILabel *tweetLabel;
-@property (strong, nonatomic) IBOutlet UILabel *replyLabel;
 
 
 - (void)setTweet:(Tweet*)tweet;
