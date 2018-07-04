@@ -16,6 +16,7 @@
 @property (nonatomic) int favoriteCount;
 @property (nonatomic) BOOL favorited;
 @property (nonatomic) int retweetCount;
+@property (nonatomic) int replyCount;
 @property (nonatomic) BOOL retweeted;
 @property (strong, nonatomic) User *user;
 @property (strong,nonatomic) NSDate *date;
@@ -25,5 +26,7 @@
 @property (strong,nonatomic) User *retweetedByUser;
 
 + (NSMutableArray *)tweetsWithArray:(NSArray *)dictionaries;
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+
 
 @end

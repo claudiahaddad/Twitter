@@ -20,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *retweetsLabel;
 @property (strong, nonatomic) Tweet *tweet;
 @property (strong, nonatomic) IBOutlet UILabel *tweetLabel;
+@property (strong, nonatomic) IBOutlet UILabel *replyLabel;
 
 
 - (void)setTweet:(Tweet*)tweet;

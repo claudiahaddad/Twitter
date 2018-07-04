@@ -30,7 +30,9 @@
    self.tweetLabel.text = self.tweet.tweetText;
    self.dateLabel.text = self.tweet.createdAtString;
    [self.profilePic setImageWithURL:self.tweet.user.picURL];
-
+    [self.favoritesLabel setText:[NSString stringWithFormat:@"%d", self.tweet.favoriteCount]];
+    [self.retweetsLabel setText:[NSString stringWithFormat:@"%d", self.tweet.retweetCount]];
+    [self.replyLabel setText:[NSString stringWithFormat:@"%d", self.tweet.replyCount]];
     
     self.userName.text = self.tweet.user.name;
     self.handle.text = self.tweet.user.screenName;
