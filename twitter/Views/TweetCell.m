@@ -49,6 +49,7 @@ self.dateLabel.text = self.tweet.createdAtString;
     if (!self.tweet.favorited) {
         self.tweet.favoriteCount += 1;
     [self.favoritesLabel setText:[NSString stringWithFormat:@"%d", self.tweet.favoriteCount]];
+        [self.favButton setImage:[UIImage imageNamed:@"favor-icon-red.png"] forState:UIControlStateNormal];
         self.tweet.favorited = YES;
         [[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
             if(error){
@@ -63,6 +64,7 @@ self.dateLabel.text = self.tweet.createdAtString;
         self.tweet.favoriteCount -= 1;
         [self.favoritesLabel setText:[NSString stringWithFormat:@"%d", self.tweet.favoriteCount]];
         self.tweet.favorited = NO;
+          [self.favButton setImage:[UIImage imageNamed:@"favor-icon.png"] forState:UIControlStateNormal];
         [[APIManager shared] unfavorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
             if(error){ NSLog(@"Error unfavoriting tweet: %@", error.localizedDescription);
             }
@@ -77,6 +79,7 @@ self.dateLabel.text = self.tweet.createdAtString;
         self.tweet.retweetCount += 1;
         [self.retweetsLabel setText:[NSString stringWithFormat:@"%d", self.tweet.retweetCount]];
         self.tweet.retweeted = YES;
+        [self.retweetButton setImage:[UIImage imageNamed:@"retweet-icon-green.png"] forState:UIControlStateNormal];
         [[APIManager shared] retweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
             if(error){
                 NSLog(@"Error reweeting tweet: %@", error.localizedDescription);
@@ -89,6 +92,7 @@ self.dateLabel.text = self.tweet.createdAtString;
         self.tweet.retweetCount -= 1;
         [self.retweetsLabel setText:[NSString stringWithFormat:@"%d", self.tweet.retweetCount]];
         self.tweet.retweeted = NO;
+        [self.retweetButton setImage:[UIImage imageNamed:@"retweet-icon.png"] forState:UIControlStateNormal];
         [[APIManager shared] unretweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
             if(error){ NSLog(@"Error unretweeting tweet: %@", error.localizedDescription);
             }

@@ -224,9 +224,11 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="dateLabel" destination="mA5-kq-4jh" id="eeJ-G4-L9F"/>
+                                            <outlet property="favButton" destination="SXf-Dg-kGl" id="wAv-8c-xad"/>
                                             <outlet property="favoritesLabel" destination="hBu-D3-WWX" id="dyR-ZJ-lH5"/>
                                             <outlet property="handle" destination="Q9m-rF-n26" id="m2s-lP-iiS"/>
                                             <outlet property="profilePic" destination="6sc-8F-QwQ" id="1GC-2q-FQg"/>
+                                            <outlet property="retweetButton" destination="cmB-bn-M4I" id="4xj-5Z-Nhi"/>
                                             <outlet property="retweetsLabel" destination="zf1-aA-VZq" id="z7c-bf-fcI"/>
                                             <outlet property="tweetLabel" destination="MJh-Zv-DDF" id="Ghb-oZ-U5K"/>
                                             <outlet property="userName" destination="VPQ-YP-0Nr" id="r0c-Ju-yAN"/>

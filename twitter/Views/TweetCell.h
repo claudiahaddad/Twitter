@@ -21,6 +21,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *replyLabel;
 @property (strong, nonatomic) Tweet *tweet;
 @property (strong, nonatomic) IBOutlet UILabel *tweetLabel;
+@property (strong, nonatomic) IBOutlet UIButton *retweetButton;
+@property (strong, nonatomic) IBOutlet UIButton *favButton;
 
 
 - (void)setTweet:(Tweet*)tweet;
