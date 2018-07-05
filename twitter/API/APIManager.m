@@ -99,9 +99,11 @@ static NSString * const consumerSecret = @"IdZul8KEaBxztZ1vQ3t9vqrbkj4upbXk3tY0n
 
 - (void)retweet:(Tweet *)tweet completion:(void (^)(Tweet *, NSError *))completion{
     
-    NSString *urlString = @"1.1/retweets/create.json";
+    NSString *urlString = @"1.1/statuses/retweet/";
+    NSString *userId = [urlString stringByAppendingString:tweet.idStr];
+    NSString *retweetURL = [userId stringByAppendingString:@".json"];
     NSDictionary *parameters = @{@"id": tweet.idStr};
-    [self POST:urlString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable tweetDictionary) {
+    [self POST:retweetURL parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable tweetDictionary) {
         Tweet *tweet = [[Tweet alloc]initWithDictionary:tweetDictionary];
         completion(tweet, nil);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
