@@ -30,7 +30,6 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.rowHeight = 120;
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     
