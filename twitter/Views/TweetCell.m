@@ -11,6 +11,7 @@
 #import "User.h"
 #import "UIImageView+AFNetworking.h"
 #import "APIManager.h"
+#import "NSDate+DateTools.h"
 
 
 @implementation TweetCell
@@ -29,7 +30,7 @@
     _tweet = tweet;
     
    self.tweetLabel.text = self.tweet.tweetText;
-   self.dateLabel.text = self.tweet.createdAtString;
+self.dateLabel.text = self.tweet.createdAtString;
    [self.profilePic setImageWithURL:self.tweet.user.picURL];
     [self.favoritesLabel setText:[NSString stringWithFormat:@"%d", self.tweet.favoriteCount]];
     [self.retweetsLabel setText:[NSString stringWithFormat:@"%d", self.tweet.retweetCount]];
@@ -37,6 +38,10 @@
     
     self.userName.text = self.tweet.user.name;
     self.handle.text = self.tweet.user.screenName;
+    
+   // NSDate *tweetDate = self.tweet.date;
+   // NSString *date = [tweetDate timeAgo];
+   // self.dateLabel.text = date;
     
     }
 
