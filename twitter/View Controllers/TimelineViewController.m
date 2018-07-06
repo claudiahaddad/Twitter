@@ -15,6 +15,7 @@
 #import "ComposeViewController.h"
 #import "AppDelegate.h"
 #import "LoginViewController.h"
+#import "DetailViewController.h"
 
 
 @interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
@@ -55,19 +56,15 @@
                                                         NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
                                                     }
                                                 }];
-                                                // Reload the tableView now that there is new data
-                                                //[self.tableView reloadData];
-                                                
-                                                // Tell the refreshControl to stop spinning
                                                 [refreshControl endRefreshing];
     
-   // [task resume];
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"forIndexPath:indexPath];
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.tweet = self.tweetArray[indexPath.row];
 
     return cell;
@@ -94,9 +91,18 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"composeSegue"]) {
  UINavigationController *navigationController = [segue destinationViewController];
  ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
  composeController.delegate = self;
+    } else if ([segue.identifier isEqualToString:@"detailSegue"]) {
+    TweetCell *tappedCell = sender;
+        Tweet *tweet = tappedCell.tweet;
+    DetailViewController *detailViewController = [segue destinationViewController];
+    detailViewController.tweet = tweet;
+    
+    NSLog(@"Tapping on a tweet!");
+}
 }
 
 

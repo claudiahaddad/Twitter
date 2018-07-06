@@ -25,6 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.textView.delegate = self;
     // Do any additional setup after loading the view.
 }
 
@@ -42,6 +43,13 @@
 
 - (IBAction)closeAction:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+
+    int characterLimit = 140;
+    NSString *newText = [self.textView.text stringByReplacingCharactersInRange:range withString:text];
+    return newText.length < characterLimit;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -38,11 +38,7 @@ self.dateLabel.text = self.tweet.createdAtString;
     
     self.userName.text = self.tweet.user.name;
     self.handle.text = self.tweet.user.screenName;
-    
-   // NSDate *tweetDate = self.tweet.date;
-   // NSString *date = [tweetDate timeAgo];
-   // self.dateLabel.text = date;
-    
+      
     }
 
 - (IBAction)didTapLike:(id)sender {
