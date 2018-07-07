@@ -18,7 +18,7 @@
 
 @interface DetailViewController ()
 
-@property (strong, nonatomic) NSString *createdAtOriginalString; // Display date
+@property (strong, nonatomic) NSString *createdAtNewString; // Display date
 @property (strong, nonatomic) IBOutlet UILabel *userName;
 @property (strong, nonatomic) IBOutlet UILabel *userHandle;
 @property (strong, nonatomic) IBOutlet UILabel *dateLabel;
@@ -48,7 +48,64 @@
     [self.retweetLabel setText:[NSString stringWithFormat:@"%d", self.tweet.retweetCount]];
 
     //DATE
-    self.dateLabel.text = self.createdAtOriginalString;
+    self.dateLabel.text = self.tweet.createdAtNewString;
+}
+- (IBAction)didTapLike:(id)sender {
+
+    if (!self.tweet.favorited) {
+        self.tweet.favoriteCount += 1;
+        [self.favLabel setText:[NSString stringWithFormat:@"%d", self.tweet.favoriteCount]];
+        [self.favButton setImage:[UIImage imageNamed:@"favor-icon-red.png"] forState:UIControlStateNormal];
+        self.tweet.favorited = YES;
+        [[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
+            if(error){
+                NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
+            }
+            else{
+                NSLog(@"Successfully favorited the following Tweet: %@", tweet.tweetText);
+            }
+        }];
+        
+    } else {
+        self.tweet.favoriteCount -= 1;
+        [self.favLabel setText:[NSString stringWithFormat:@"%d", self.tweet.favoriteCount]];
+        self.tweet.favorited = NO;
+        [self.favButton setImage:[UIImage imageNamed:@"favor-icon.png"] forState:UIControlStateNormal];
+        [[APIManager shared] unfavorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
+            if(error){ NSLog(@"Error unfavoriting tweet: %@", error.localizedDescription);
+            }
+            else{ NSLog(@"Successfully unfavorited the following Tweet: %@", tweet.tweetText);
+            }
+        }];
+    }
+}
+- (IBAction)didTapRetweet:(id)sender {
+
+    if (!self.tweet.retweeted) {
+        self.tweet.retweetCount += 1;
+        [self.retweetLabel setText:[NSString stringWithFormat:@"%d", self.tweet.retweetCount]];
+        self.tweet.retweeted = YES;
+        [self.retweetButton setImage:[UIImage imageNamed:@"retweet-icon-green.png"] forState:UIControlStateNormal];
+        [[APIManager shared] retweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
+            if(error){
+                NSLog(@"Error reweeting tweet: %@", error.localizedDescription);
+            }
+            else{
+                NSLog(@"Successfully retweeted the following Tweet: %@", tweet.tweetText);
+            }
+        }];
+    }  else {
+        self.tweet.retweetCount -= 1;
+        [self.retweetLabel setText:[NSString stringWithFormat:@"%d", self.tweet.retweetCount]];
+        self.tweet.retweeted = NO;
+        [self.retweetButton setImage:[UIImage imageNamed:@"retweet-icon.png"] forState:UIControlStateNormal];
+        [[APIManager shared] unretweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
+            if(error){ NSLog(@"Error unretweeting tweet: %@", error.localizedDescription);
+            }
+            else{ NSLog(@"Successfully unretweeted the following Tweet: %@", tweet.tweetText);
+            }
+        }];
+    }
 }
 
 

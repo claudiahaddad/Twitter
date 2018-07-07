@@ -14,7 +14,9 @@
 #import "UIImageView+AFNetworking.h"
 
 @interface ComposeViewController ()
+
 @property (strong, nonatomic) IBOutlet UITextView *textView;
+@property (strong, nonatomic) IBOutlet UILabel *countLabel;
 
 @end
 
@@ -23,17 +25,34 @@
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.textView.delegate = self;
     // Do any additional setup after loading the view.
 }
 
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+
+int characterLimit = 140;
+    
+NSString *newText = [self.textView.text stringByReplacingCharactersInRange:range withString:text];
+
+    self.countLabel.text = [NSString stringWithFormat:@"%d", 140 - [newText length]];
+
+
+// The new text should be allowed? True/False
+return newText.length < characterLimit;
+
+}
 - (IBAction)tweetAction:(id)sender {
     NSString *tweetString = self.textView.text;
     [[APIManager shared] postStatusWithText:tweetString completion:^(Tweet *tweet, NSError *error) {
         if (tweet) {
             [self.delegate didTweet:tweet];
+            NSLog(@"Compose Tweet Success!");
+
             [self dismissViewControllerAnimated:true completion:nil];
         } else {
             NSLog(@"ERROR: %@", error);
@@ -41,16 +60,6 @@
     }];
 }
 
-- (IBAction)closeAction:(id)sender {
-    [self dismissViewControllerAnimated:true completion:nil];
-}
-
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
-
-    int characterLimit = 140;
-    NSString *newText = [self.textView.text stringByReplacingCharactersInRange:range withString:text];
-    return newText.length < characterLimit;
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

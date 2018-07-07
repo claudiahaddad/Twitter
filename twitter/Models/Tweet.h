@@ -21,6 +21,7 @@
 @property (strong, nonatomic) User *user;
 @property (strong,nonatomic) NSDate *date;
 @property (strong, nonatomic) NSString *createdAtString;
+@property (strong, nonatomic) NSString *createdAtNewString;
 @property (strong, nonatomic) NSURL *picURL;
 
 @property (strong,nonatomic) User *retweetedByUser;
